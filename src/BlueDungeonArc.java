@@ -14,12 +14,14 @@ public class BlueDungeonArc {
         String[] mediumEnemies = {"Bone Wizard", "Bone Footman", "Bone Pikeman", "Cursed Book"};
         String[] lateEnemies = {"Bone Legionnaire", "Bone Assassin", "Cursed Bible"};
         int maxEnemyHealth = 20;
-        int enemyAttackDamage = 5;
+        int earlyEnemyAttackDamage = 5;
+        int mediumEnemyAttackDamage = 15;
+        int lateEnemyAttackDamage = 25;
         int enemyDamageTaken = 15;
 
         // Player variables
         int playerHealth = 50;
-        int playerAttackDamage = 1;
+        int playerAttackDamage = 10;
 
         boolean running = true;
         String input;
@@ -52,10 +54,10 @@ public class BlueDungeonArc {
             }
 
             System.out.println("\tYou look left.. then right.");
-            System.out.println("\tYou see a large ruined wooden door in front of you. \n You proceed to " +
+            System.out.println("\tYou see a large ruined wooden door in front of you.\n\t You proceed to " +
                     "end through the decaying door. Inside you find rubble exterior that once would of looked " +
-                    "exquisite had not the ravages of time taken its toil on it.\n There was only one path that laid head " +
-                    "with blue water candles dimly lit on either side of the wall to illuminate the path people once took in this dungeon.\n " +
+                    "exquisite had not the ravages of time taken its toil on it.\n\t There was only one path that laid head " +
+                    "with blue water candles dimly lit on either side of the wall to illuminate the path people once took in this dungeon.\n\t " +
                     "You contemplate on what to do next.");
 
             while(true) {
@@ -71,19 +73,24 @@ public class BlueDungeonArc {
 
                 } else if (input.equals("2")) {
 
-                    System.out.println("It's took dark. You realised you wont be able to see anything so you turn back into the dungeon.");
+                    System.out.println("\tIt's took dark. You realised you wont be able to see anything so you turn back into the dungeon.");
 
                 }
 
             }
 
-            System.out.println("You cautiously proceed forward into the dungeon, alone, unarmed and unaware of the dangers that lie ahead...");
+            System.out.println("\tYou cautiously proceed forward into the dungeon, alone, unarmed and unaware of the dangers that lie ahead...");
 
+            System.out.println("-------------------------------------------");
             System.out.println("\n--[ WELCOME TO THE BLUE DUNGEON ARC ]--\n");
+            System.out.println("-------------------------------------------");
 
-            System.out.println("You continue to walk.\n And walk.. and walk...\n and walk.\n" +
+            int enemyHealth = rand.nextInt(maxEnemyHealth);
+            String enemy = earlyEnemies[rand.nextInt(earlyEnemies.length)];
+
+            System.out.println("\tYou continue to walk.\n\t And walk.. and walk...\n\t and walk.\n\t" +
                     " Suddenly, you hear groaning coming from the darkness in front of you. You take a deep break and " +
-                    "continue onwards. A " + earlyEnemies[rand.nextInt(earlyEnemies.length)] + " appears before you!\n " +
+                    "continue onwards. A " + enemy + " appears before you!\n\t " +
                     "Stricken with the flight or fight response, you decide to fight. You look around for any objects lying around that " +
                     "you could use to defend yourself with.");
 
@@ -97,19 +104,19 @@ public class BlueDungeonArc {
 
                 if(input.equals("1")) {
 
-                    System.out.println("You pick up the stick lying on the ground.\nArmed with the stick you " +
+                    System.out.println("\tYou pick up the stick lying on the ground.\n\t Armed with the stick you " +
                             "decide to get the jump on the enemy.");
                     break;
 
                 } else if (input.equals("2")) {
 
-                    System.out.println("You begin to quickly gather a handful of pebbles from the ground.\n Armed with the pebbles" +
+                    System.out.println("\tYou begin to quickly gather a handful of pebbles from the ground.\n\t Armed with the pebbles" +
                             "you begin to throw them at the enemy.");
                     break;
 
                 } else if (input.equals("3")) {
 
-                    System.out.println("You decide your fists would be the best option against the enemy at hand.\n " +
+                    System.out.println("\tYou decide your fists would be the best option against the enemy at hand.\n\t " +
                             "You charge in roaring like a battle frenzied viking (at least in your mind).");
                     break;
 
@@ -117,8 +124,39 @@ public class BlueDungeonArc {
 
             }
 
-            System.out.println("The enemy releases a weird sound. You seemed to have damaged it.\n" +
+            System.out.println("\tThe enemy releases a weird sound. You seemed to have damaged it.\n\t" +
                     "You continue with your attacks.");
+
+            while(enemyHealth > 0) {
+
+                System.out.println("\tEnemy's Health: " + (enemyHealth - 2));
+                System.out.println("\tPlayer's Health: " + playerHealth);
+                System.out.println("\tAction: ");
+                System.out.println("\t 1. Attack");
+                System.out.println("\t 2. Drink health potion");
+
+                input = sc.nextLine();
+
+                if(input.equals("1")) {
+
+                    int damageDealt = rand.nextInt(playerAttackDamage);
+                    int damageTaken = rand.nextInt(earlyEnemyAttackDamage);
+
+                    enemyHealth -= damageDealt;
+                    playerHealth -= damageTaken;
+
+                    System.out.println("\t You strike the " + enemy + " for " + damageDealt + " damage." );
+                    System.out.println("\t You took " + damageTaken + " damage from the " + enemy + ".");
+
+                } else if (input.equals("2")) {
+
+                    System.out.println("\tYou don't have any potions on you!");
+
+                }
+
+            }
+
+            System.out.println("\tThe enemy has been defeated!");
 
         }
 
