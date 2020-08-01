@@ -15,6 +15,7 @@ public class BlueDungeonArc {
         String[] lateEnemies = {"Bone Legionnaire", "Bone Assassin", "Cursed Bible"};
         int maxEnemyHealth = 20;
         int enemyAttackDamage = 5;
+        int enemyDamageTaken = 15;
 
         // Player variables
         int playerHealth = 50;
@@ -25,10 +26,6 @@ public class BlueDungeonArc {
 
         GAME:
         while(running) {
-
-            System.out.println("Welcome to Odo's Journey: Blue Dungeon Arc!");
-
-            System.out.println("--------------------------------------------");
 
             System.out.println("\t You wake up in a deep, dimly lit underground cavern.");
 
@@ -79,6 +76,49 @@ public class BlueDungeonArc {
                 }
 
             }
+
+            System.out.println("You cautiously proceed forward into the dungeon, alone, unarmed and unaware of the dangers that lie ahead...");
+
+            System.out.println("\n--[ WELCOME TO THE BLUE DUNGEON ARC ]--\n");
+
+            System.out.println("You continue to walk.\n And walk.. and walk...\n and walk.\n" +
+                    " Suddenly, you hear groaning coming from the darkness in front of you. You take a deep break and " +
+                    "continue onwards. A " + earlyEnemies[rand.nextInt(earlyEnemies.length)] + " appears before you!\n " +
+                    "Stricken with the flight or fight response, you decide to fight. You look around for any objects lying around that " +
+                    "you could use to defend yourself with.");
+
+            while(true) {
+
+                System.out.println("\n\t1. Pick up stick");
+                System.out.println("\t 2. Pick up pebbles");
+                System.out.println("\t 3. Use your fists");
+
+                input = sc.nextLine();
+
+                if(input.equals("1")) {
+
+                    System.out.println("You pick up the stick lying on the ground.\nArmed with the stick you " +
+                            "decide to get the jump on the enemy.");
+                    break;
+
+                } else if (input.equals("2")) {
+
+                    System.out.println("You begin to quickly gather a handful of pebbles from the ground.\n Armed with the pebbles" +
+                            "you begin to throw them at the enemy.");
+                    break;
+
+                } else if (input.equals("3")) {
+
+                    System.out.println("You decide your fists would be the best option against the enemy at hand.\n " +
+                            "You charge in roaring like a battle frenzied viking (at least in your mind).");
+                    break;
+
+                }
+
+            }
+
+            System.out.println("The enemy releases a weird sound. You seemed to have damaged it.\n" +
+                    "You continue with your attacks.");
 
         }
 
