@@ -54,6 +54,32 @@ public class BlueDungeonArc {
 
             }
 
+            System.out.println("\tYou look left.. then right.");
+            System.out.println("\tYou see a large ruined wooden door in front of you. \n You proceed to " +
+                    "end through the decaying door. Inside you find rubble exterior that once would of looked " +
+                    "exquisite had not the ravages of time taken its toil on it.\n There was only one path that laid head " +
+                    "with blue water candles dimly lit on either side of the wall to illuminate the path people once took in this dungeon.\n " +
+                    "You contemplate on what to do next.");
+
+            while(true) {
+
+                System.out.println("\n\t 1. Proceed further into the dungeon");
+                System.out.println("\t 2. Turn back");
+
+                input = sc.nextLine();
+
+                if(input.equals("1")) {
+
+                    break;
+
+                } else if (input.equals("2")) {
+
+                    System.out.println("It's took dark. You realised you wont be able to see anything so you turn back into the dungeon.");
+
+                }
+
+            }
+
         }
 
     }
