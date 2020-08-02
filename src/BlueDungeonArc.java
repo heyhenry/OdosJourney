@@ -3,6 +3,18 @@ import java.util.Scanner;
 
 public class BlueDungeonArc {
 
+    public static String replace(String oldStr, String newStr) {
+
+        if(oldStr != newStr) {
+
+            oldStr = newStr;
+
+        }
+
+        return oldStr;
+
+    }
+
     public static void main(String[] args) {
 
         // System objects
@@ -10,7 +22,7 @@ public class BlueDungeonArc {
         Random rand = new Random();
 
         // Game variables
-        String[] earlyEnemies = {"Naked Skeleton", "Cursed Pages", "Decaying Bone Soldier"};
+        String[] earlyEnemies = {"Naked Skeleton", "Cursed Page", "Decaying Bone Soldier"};
         String[] mediumEnemies = {"Bone Wizard", "Bone Footman", "Bone Pikeman", "Cursed Book"};
         String[] lateEnemies = {"Bone Legionnaire", "Bone Assassin", "Cursed Bible"};
         int maxEnemyHealth = 20;
@@ -24,6 +36,7 @@ public class BlueDungeonArc {
         // Player variables
         int playerHealth = 50;
         int playerAttackDamage = 10;
+        int healthPotion = 0;
 
         boolean running = true;
         String input;
@@ -60,7 +73,7 @@ public class BlueDungeonArc {
             System.out.println("\tYou see a large ruined wooden door in front of you.");
             System.out.println("\tYou proceed to enter through the decaying door.");
             System.out.println("\tInside you find a stony exterior that once would of looked exquisite " +
-                    "had not the raves of time taken its toil on it");
+                    "had not the ravages of time taken its toil on it");
             System.out.println("\tThere was only one path that laid ahead with blue candles dimly lit on either side " +
                     "of the wall to illuminate the path people once took in this dungeon.");
             System.out.println("\tYou contemplate on what to do next.");
@@ -94,12 +107,12 @@ public class BlueDungeonArc {
             System.out.println();
             System.out.println("\tYou continue to walk.");
             System.out.println("\tAnd walk.. and walk..");
-            System.out.println("\tSuddenly, you hear groaning coming from the darkness in front of you.");
+            System.out.println("\tSuddenly, you hear groaning coming from the darkness before you.");
             System.out.println("\tYou take a deep breath and continue onwards.");
 
             System.out.println(("\n\t# A " + enemy + " has appeared! #\n"));
 
-            System.out.println("\tOvercome with the flight or fight response.");
+            System.out.println("\tOvercome with the fight or flight response.");
             System.out.println("\tYou look around for anything you could use to defend yourself with.");
 
             while(true) {
@@ -140,6 +153,10 @@ public class BlueDungeonArc {
 
                 System.out.println("\n\tEnemy's Health: " + (enemyHealth - 2));
                 System.out.println("\tPlayer's Health: " + playerHealth);
+
+                System.out.println("\n\t-[Inventory]-");
+                System.out.println("\tHealth potions: " + healthPotion + " left.");
+
                 System.out.println("\n\tAction: ");
                 System.out.println("\t1. Attack");
                 System.out.println("\t2. Drink health potion");
@@ -166,6 +183,110 @@ public class BlueDungeonArc {
             }
 
             System.out.println("\n\tThe enemy has been defeated!\n");
+
+            System.out.println("\tYou continue onwards.");
+
+            THREEPATHS:
+            while(true) {
+
+                System.out.println("\n\tYou come upon a three way split in the dungeon path.");
+
+                System.out.println("\n\tAction: ");
+                System.out.println("\t1. Continue forward");
+                System.out.println("\t2. Turn left");
+                System.out.println("\t3. Turn right");
+                input = sc.nextLine();
+
+                if(input.equals("1")) {
+
+
+
+                } else if(input.equals("2")) {
+
+                    System.out.println("\n\tYou decide to turn left.");
+                    System.out.println("\tYou begin to cautiously make your way down the path unknown.");
+                    System.out.println("\tYou hear something...");
+                    System.out.println("\n\t# A " + enemy + " has appeared! #");
+
+                    while(enemyHealth > 0) {
+
+                        System.out.println("\n\tEnemy's Health: " + (enemyHealth - 2));
+                        System.out.println("\tPlayer's Health: " + playerHealth);
+
+                        System.out.println("\n\t-[Inventory]-");
+                        System.out.println("\tHealth potions: " + healthPotion + " left.");
+
+                        System.out.println("\n\tAction: ");
+                        System.out.println("\t1. Attack");
+                        System.out.println("\t2. Drink health potion");
+
+                        input = sc.nextLine();
+
+                        if(input.equals("1")) {
+
+                            int damageDealt = rand.nextInt(playerAttackDamage);
+                            int damageTaken = rand.nextInt(earlyEnemyAttackDamage);
+
+                            enemyHealth -= damageDealt;
+                            playerHealth -= damageTaken;
+
+                            System.out.println("\tYou strike the " + enemy + " for " + damageDealt + " damage." );
+                            System.out.println("\tYou took " + damageTaken + " damage from the " + enemy + ".");
+
+                        } else if (input.equals("2")) {
+
+                            healthPotion -= 1;
+                            System.out.println("You drank a health potion!");
+                            playerHealth += 10;
+
+                        }
+
+                    }
+
+                } else if(input.equals("3")) {
+
+                    System.out.println("\n\tYou decide to turn right.");
+                    System.out.println("\tYou walk for awhile, only to be met with a small room that seems to be a dead end.");
+                    System.out.println("\tYou enter.");
+                    System.out.println("\tThere is a dust riddled, cobweb coated chest in the center of the room.");
+
+                    while(true) {
+
+                        System.out.println("\n\tAction: ");
+                        System.out.println("\t1. You open the chest");
+                        System.out.println("\t2. You survey the room");
+                        System.out.println("\t3. You turn back\n");
+                        input = sc.nextLine();
+
+                        if(input.equals("1")) {
+
+                            System.out.println("\tYou cautiously pry open the chest.");
+                            System.out.println("\n\t# You obtained a 3 health potions! #\n");
+
+                            healthPotion += 3;
+
+                            System.out.println("\tYou hurry back out so you can take another path.");
+
+                            continue THREEPATHS;
+
+                        } else if(input.equals("2")) {
+
+                            System.out.println("\tYou notice nothing out of the ordinary.");
+
+                        } else if(input.equals("3")) {
+
+                            continue THREEPATHS;
+
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+
 
         }
 
