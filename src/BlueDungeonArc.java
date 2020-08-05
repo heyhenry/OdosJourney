@@ -30,12 +30,13 @@ public class BlueDungeonArc {
         int mediumEnemyAttackDamage = 15;
         int lateEnemyAttackDamage = 25;
         int enemyDamageTaken = 15;
-        int enemyHealth = rand.nextInt(maxEnemyHealth);
+        int enemyHealth = 20;
+//        int enemyHealth = rand.nextInt(maxEnemyHealth);
         String enemy = earlyEnemies[rand.nextInt(earlyEnemies.length)];
 
         // Player variables
         int playerHealth = 50;
-        int playerAttackDamage = 10;
+        int playerAttackDamage = 0;
         int healthPotion = 0;
 
         boolean running = true;
@@ -115,6 +116,10 @@ public class BlueDungeonArc {
             System.out.println("\tOvercome with the fight or flight response.");
             System.out.println("\tYou look around for anything you could use to defend yourself with.");
 
+            int stickOption = 0;
+            int pebbleOption = 0;
+            int fistOption = 0;
+
             while(true) {
 
                 System.out.println("\n\tAction: ");
@@ -126,17 +131,23 @@ public class BlueDungeonArc {
 
                 if(input.equals("1")) {
 
+                    stickOption = 1;
+
                     System.out.println("\tYou pick up the stick lying on the ground.\n");
                     System.out.println("\tArmed with the stick, you decide to get the jump on the enemy.");
                     break;
 
                 } else if (input.equals("2")) {
 
+                    pebbleOption = 1;
+
                     System.out.println("\tYou begin to quickly gather a handful of pebbles from the ground.\n");
                     System.out.println("\tArmed with the pebbles, you begin to throw them at the enemy.");
                     break;
 
                 } else if (input.equals("3")) {
+
+                    fistOption = 1;
 
                     System.out.println("\tYou decide your fists would be the best option against the enemy at hand.\n");
                     System.out.println("\tYou charge in roaring like a battle frenzied viking (at least in your mind).");
@@ -148,6 +159,25 @@ public class BlueDungeonArc {
 
             System.out.println("\tThe enemy releases a weird sound. You seemed to have damaged it.");
             System.out.println("\tYou continue with your attacks.");
+
+            int damageDealt = 0;
+
+            if(stickOption == 1) {
+
+                playerAttackDamage = 10;
+                damageDealt = playerAttackDamage;
+
+            } else if (pebbleOption == 1) {
+
+                playerAttackDamage = 3;
+                damageDealt = playerAttackDamage;
+
+            } else if (fistOption == 1) {
+
+                playerAttackDamage = 5;
+                damageDealt = playerAttackDamage;
+
+            }
 
             while(enemyHealth > 0) {
 
@@ -165,7 +195,7 @@ public class BlueDungeonArc {
 
                 if(input.equals("1")) {
 
-                    int damageDealt = rand.nextInt(playerAttackDamage);
+
                     int damageTaken = rand.nextInt(earlyEnemyAttackDamage);
 
                     enemyHealth -= damageDealt;
@@ -224,7 +254,7 @@ public class BlueDungeonArc {
 
                         if(input.equals("1")) {
 
-                            int damageDealt = rand.nextInt(playerAttackDamage);
+                            damageDealt = rand.nextInt(playerAttackDamage);
                             int damageTaken = rand.nextInt(earlyEnemyAttackDamage);
 
                             enemyHealth -= damageDealt;
