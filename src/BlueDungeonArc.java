@@ -216,6 +216,9 @@ public class BlueDungeonArc {
 
             System.out.println("\tYou continue onwards.");
 
+            int leftCounter = 0;
+            enemyHealth = 20;
+
             THREEPATHS:
             while(true) {
 
@@ -233,43 +236,59 @@ public class BlueDungeonArc {
 
                 } else if(input.equals("2")) {
 
-                    System.out.println("\n\tYou decide to turn left.");
-                    System.out.println("\tYou begin to cautiously make your way down the path unknown.");
-                    System.out.println("\tYou hear something...");
-                    System.out.println("\n\t# A " + enemy + " has appeared! #");
+                    if(leftCounter != 1) {
 
-                    while(enemyHealth > 0) {
+                        leftCounter++;
 
-                        System.out.println("\n\tEnemy's Health: " + (enemyHealth - 2));
-                        System.out.println("\tPlayer's Health: " + playerHealth);
+                        System.out.println("\n\tYou decide to turn left.");
+                        System.out.println("\tYou begin to cautiously make your way down the path unknown.");
+                        System.out.println("\tYou hear something...");
+                        System.out.println("\n\t# A " + enemy + " has appeared! #");
 
-                        System.out.println("\n\t-[Inventory]-");
-                        System.out.println("\tHealth potions: " + healthPotion + " left.");
+                        while (enemyHealth > 0) {
 
-                        System.out.println("\n\tAction: ");
-                        System.out.println("\t1. Attack");
-                        System.out.println("\t2. Drink health potion");
+                            System.out.println("\n\tEnemy's Health: " + (enemyHealth));
+                            System.out.println("\tPlayer's Health: " + playerHealth);
 
-                        input = sc.nextLine();
+                            System.out.println("\n\t-[Inventory]-");
+                            System.out.println("\tHealth potions: " + healthPotion + " left.");
 
-                        if(input.equals("1")) {
+                            System.out.println("\n\tAction: ");
+                            System.out.println("\t1. Attack");
+                            System.out.println("\t2. Drink health potion");
 
-                            damageDealt = rand.nextInt(playerAttackDamage);
-                            int damageTaken = rand.nextInt(earlyEnemyAttackDamage);
+                            input = sc.nextLine();
 
-                            enemyHealth -= damageDealt;
-                            playerHealth -= damageTaken;
+                            if (input.equals("1")) {
 
-                            System.out.println("\tYou strike the " + enemy + " for " + damageDealt + " damage." );
-                            System.out.println("\tYou took " + damageTaken + " damage from the " + enemy + ".");
+                                damageDealt = rand.nextInt(playerAttackDamage);
+                                int damageTaken = rand.nextInt(earlyEnemyAttackDamage);
 
-                        } else if (input.equals("2")) {
+                                enemyHealth -= damageDealt;
+                                playerHealth -= damageTaken;
 
-                            healthPotion -= 1;
-                            System.out.println("You drank a health potion!");
-                            playerHealth += 10;
+                                System.out.println("\tYou strike the " + enemy + " for " + damageDealt + " damage.");
+                                System.out.println("\tYou took " + damageTaken + " damage from the " + enemy + ".");
+
+                                if(enemyHealth < 0) {
+
+                                    System.out.println("\tYou have slain the " + enemy + "!");
+
+                                }
+
+                            } else if (input.equals("2")) {
+
+                                healthPotion -= 1;
+                                System.out.println("You drank a health potion!");
+                                playerHealth += 10;
+
+                            }
 
                         }
+                    } else {
+
+                        System.out.println("\tThere is nothing left for you that way.");
+                        continue THREEPATHS;
 
                     }
 
