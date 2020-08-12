@@ -234,8 +234,7 @@ public class BlueDungeonArc {
 
                 if(input.equals("1")) {
 
-                    System.out.println("\tYou enter a large open space.");
-                    System.out.println("\tWater drips from the ceiling slowly, almost rhythmically, like a little stream.");
+                    break;
 
                 } else if(input.equals("2")) {
 
@@ -370,7 +369,8 @@ public class BlueDungeonArc {
 
             }
 
-
+            System.out.println("\tYou enter a large open space.");
+            System.out.println("\tWater drips from the ceiling slowly, almost rhythmically in tune with its surroundings. A perfect synergy of sorts.");
 
         }
 
